@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD APP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    
+</head>
+<style>
+    body {
+        background-color: brown;
+        font-family: 'Roboto', sans-serif;
+        padding-top: 100px;
+    }
+    .user {
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    a {
+        color: brown;
+        text-transform: capitalize;
+        font-size: 18px;
+        font-weight: 500;
+        padding-left: 10px;
+        padding-bottom: 15px;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: auto;
+        background-color: white;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+        text-align: center;
+        padding: 20px;
+        border-radius: 10px;
+    }
+    table {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    td {
+        padding-top: 20px;
+        font-size: 18px;
+    }
+</style>
+<body>
+
+    <div class="container">
+        
+        {% block content %}
+            
+        {% endblock content %}
+            
+    </div>
+    
+</body>
+</html>
+
+
+
+
+
+
+
+

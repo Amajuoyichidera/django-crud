@@ -1,3 +1,8 @@
+{% extends 'base/main.html' %}
+
+{% block content %}
+<h1>Welcome To David Note App</h1>
+<p>Please login or register to continue</p>
 <h1>Login</h1>
 
 <form method="post">
@@ -7,3 +12,6 @@
 </form>
 
 <p>Dont have an account ? <a href="{% url 'register' %}">Register</a> </p>
+{% endblock content %}
+    
+
