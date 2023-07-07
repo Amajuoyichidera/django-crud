@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-$!grul3_3q9l$_f43h0bh4kzb()-te)9du@57$dv84wmc5s)#f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://django-crud-production-3596.up.rail']
 
 
 # Application definition
@@ -125,4 +125,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# CSRF_TRUSTED_ORIGINS=['https://django-crud-production-3596.up.rail']
+CSRF_TRUSTED_ORIGINS=['https://django-crud-production-3596.up.rail']
+
+CSRF_COOKIE_DOMAIN=['https://django-crud-production-3596.up.rail']
