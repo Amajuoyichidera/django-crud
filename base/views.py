@@ -6,6 +6,8 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.urls import reverse_lazy
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -20,7 +22,8 @@ class CustomLoginView(LoginView):
     template_name = 'base/login.html'
     fields = '__all__'
     redirect_authenticated_user = True
-    
+
+    @method_decorator(csrf_exempt)
     def get_success_url(self):
         return reverse_lazy('tasks')
     
@@ -30,13 +33,15 @@ class RegisterPage(FormView):
     form_class = UserCreationForm
     redirect_authenticated_user = True
     success_url = reverse_lazy('tasks')
-
+    
+    @method_decorator(csrf_exempt)
     def form_valid(self, form):
         user = form.save()
         if user is not None:
             login(self.request, user)
         return super(RegisterPage, self).form_valid(form)
     
+    @method_decorator(csrf_exempt)
     def get(self, *args, **kwargs):
         if self.request.user.is_authenticated:
             return redirect('tasks')
@@ -47,7 +52,8 @@ class RegisterPage(FormView):
 class TaskList(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = 'tasks'
-    
+
+    @method_decorator(csrf_exempt)
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['tasks'] = context['tasks'].filter(user=self.request.user)
@@ -66,6 +72,7 @@ class TaskCreate(LoginRequiredMixin, CreateView):
     fields = ['title', 'description', 'complete',]
     success_url = reverse_lazy('tasks')
 
+    @method_decorator(csrf_exempt)
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(TaskCreate, self).form_valid(form)
