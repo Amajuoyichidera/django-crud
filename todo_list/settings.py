@@ -125,4 +125,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_TRUSTED_ORIGINS=['django-crud-production-3596.up.rail']
+CSRF_TRUSTED_ORIGINS=['https://django-crud-production-3596.up.rail']
