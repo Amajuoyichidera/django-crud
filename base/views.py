@@ -34,14 +34,14 @@ class RegisterPage(FormView):
     redirect_authenticated_user = True
     success_url = reverse_lazy('tasks')
     
-    @method_decorator(csrf_exempt)
+    # @method_decorator(csrf_exempt)
     def form_valid(self, form):
         user = form.save()
         if user is not None:
             login(self.request, user)
         return super(RegisterPage, self).form_valid(form)
     
-    @method_decorator(csrf_exempt)
+    # @method_decorator(csrf_exempt)
     def get(self, *args, **kwargs):
         if self.request.user.is_authenticated:
             return redirect('tasks')
@@ -53,7 +53,7 @@ class TaskList(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = 'tasks'
 
-    @method_decorator(csrf_exempt)
+    # @method_decorator(csrf_exempt)
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['tasks'] = context['tasks'].filter(user=self.request.user)
@@ -72,7 +72,7 @@ class TaskCreate(LoginRequiredMixin, CreateView):
     fields = ['title', 'description', 'complete',]
     success_url = reverse_lazy('tasks')
 
-    @method_decorator(csrf_exempt)
+    # @method_decorator(csrf_exempt)
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(TaskCreate, self).form_valid(form)
